@@ -1,4 +1,4 @@
-# briefing
+# briefing-frontend
 
 ## Project setup
 ```

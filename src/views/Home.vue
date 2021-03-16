@@ -1,18 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <Carousel :date-father="dateFather"/>
+    <Table @emit-date="receive"/>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import Carousel from '@/components/Carousel.vue'
+import Table from '@/components/Table.vue'
 
 @Component({
   components: {
-    HelloWorld
+    Carousel,
+    Table
   }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  dateFather = ''
+
+  receive (val: any) {
+    this.dateFather = val
+  }
+}
 </script>
