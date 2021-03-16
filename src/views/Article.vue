@@ -29,8 +29,8 @@ export default class Article extends Vue {
       time: to.params.date
     }
     getSummaryList(param).then(res => {
-      console.log(res)
-      next(vm => vm.setData(param.time, res))
+      // console.log(res)
+      next((vm: any) => vm.setData(param.time, res))
     })
   }
 
