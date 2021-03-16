@@ -12,7 +12,8 @@ import {
   LineSeriesOption
 } from 'echarts/charts'
 import {
-  CanvasRenderer
+  CanvasRenderer,
+  SVGRenderer
 } from 'echarts/renderers'
 import {
   TitleComponent,
@@ -42,13 +43,14 @@ export default class Table extends Vue {
 
   initEcharts (dataList: []) {
     type ECOption = echarts.ComposeOption<LineSeriesOption|TooltipComponentOption|TitleComponentOption|GridComponentOption>
-    echarts.use([TitleComponent, GridComponent, TooltipComponent, LineChart, CanvasRenderer])
+    echarts.use([TitleComponent, GridComponent, TooltipComponent, LineChart, SVGRenderer])
     const el: any = this.$refs.chart
     this.chart = echarts.init(el)
     const option: ECOption = {
       tooltip: {
         trigger: 'item',
         axisPointer: {
+          type: 'cross',
           snap: true
         },
         formatter: (param: any) => {
@@ -77,7 +79,13 @@ export default class Table extends Vue {
         })
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+        axisPointer: {
+          snap: true,
+          label: {
+            precision: '0'
+          }
+        }
       },
       series: [
         {
@@ -86,16 +94,12 @@ export default class Table extends Vue {
             return item.nums
           }),
           symbolSize: 6
-          // symbolSize: (value: any, params: any) => {
-          //   console.log(value, params)
-          //   return 10
-          // }
         }
       ]
     }
     this.chart.setOption(option)
     this.chart.on('click', (params: any) => {
-      console.log(params)
+      // console.log(params)
       this.$emit('emit-date', params.name)
       const option: ECOption = {
         series: [

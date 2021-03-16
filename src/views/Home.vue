@@ -19,7 +19,7 @@ import Table from '@/components/Table.vue'
 export default class Home extends Vue {
   dateFather = ''
 
-  receive (val: any) {
+  receive (val: string) {
     this.dateFather = val
   }
 }

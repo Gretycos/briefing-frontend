@@ -19,8 +19,7 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { getTitleList } from '@/api/api'
 
-@Component({
-})
+@Component
 export default class Carousel extends Vue {
   @Prop() dateFather!: string // prop用于接收父组件传递的参数，不需要初始化，接收到了不能直接使用
   todayNewsInfoList: [] = [] // data要初始化，data是响应式的
