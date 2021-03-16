@@ -5,7 +5,7 @@
       <el-image
         :src="require('../assets/covid-19.png')"
         :fit="'contain'"
-        style="height: 80px;">
+        style="height: 80px;" @click="backToHome">
       </el-image>
     </el-col>
     <el-col :span="6">
@@ -41,6 +41,10 @@ export default class TopBar extends Vue {
   }
 
   week: string = new Date().toDateString().split(' ')[0].toUpperCase()
+
+  backToHome () {
+    this.$router.push({ name: 'Home' })
+  }
 }
 </script>
 <style scoped lang="scss">

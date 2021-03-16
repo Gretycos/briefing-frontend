@@ -1,12 +1,12 @@
 <template>
   <el-carousel
-    ref="cardShow"
+    ref="carousel"
     height="300px"
     :interval="3000"
     arrow="never"
     :autoplay="true">
     <el-carousel-item v-for="(item,index) in todayNewsInfoList" :key="index">
-      <div class="carousel-content">
+      <div class="carousel-content" @click="moveToArticle">
         <div class="carousel-hot">—— HOT ISSUE {{ index+1 }} ——</div>
         <div class="carousel-title">{{ item.title }}</div>
         <div class="carousel-date">{{ dateChild }}</div>
@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
-import { getTitleList } from '@/api/api'
+import { getTitleList, getSummaryList } from '@/api/api'
 
 @Component
 export default class Carousel extends Vue {
@@ -36,15 +36,20 @@ export default class Carousel extends Vue {
     // console.log(param)
     getTitleList(param).then(res => {
       this.todayNewsInfoList = res
-      const el: any = this.$refs.cardShow
+      const el: any = this.$refs.carousel
       el.setActiveItem(0)
       // console.log(res)
     })
   }
+
+  moveToArticle () {
+    console.log(this.dateChild)
+    this.$router.push({ name: 'Article', params: { date: this.dateChild } })
+  }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .el-carousel{
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 }
