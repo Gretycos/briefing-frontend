@@ -47,13 +47,13 @@ export default class Table extends Vue {
     this.chart = echarts.init(el)
     const option: ECOption = {
       tooltip: {
-        trigger: 'axis',
+        trigger: 'item',
         axisPointer: {
-          type: 'cross'
+          snap: true
         },
         formatter: (param: any) => {
           const item: any = dataList.find((item: {date: string; kw_date: []; nums: number}) => {
-            return item.date === param[0].name
+            return item.date === param.name
           })
           const kwList = JSON.parse(item.kw_date)
           const returnList = kwList.map((l: []) => {
@@ -77,21 +77,48 @@ export default class Table extends Vue {
         })
       },
       yAxis: {
-        type: 'value',
-        axisPointer: {
-          snap: true
-        }
+        type: 'value'
       },
       series: [
         {
           type: 'line',
           data: dataList.map((item: {date: string; kw_date: []; nums: number}) => {
             return item.nums
-          })
+          }),
+          symbolSize: 6
+          // symbolSize: (value: any, params: any) => {
+          //   console.log(value, params)
+          //   return 10
+          // }
         }
       ]
     }
     this.chart.setOption(option)
+    this.chart.on('click', (params: any) => {
+      console.log(params)
+      this.$emit('emit-date', params.name)
+      const option: ECOption = {
+        series: [
+          {
+            symbol: (value: any, p: any) => {
+              if (params.dataIndex === p.dataIndex) {
+                return 'circle'
+              } else {
+                return 'emptyCircle'
+              }
+            },
+            symbolSize: (value: any, p: any) => {
+              if (params.dataIndex === p.dataIndex) {
+                return 10
+              } else {
+                return 6
+              }
+            }
+          }
+        ]
+      }
+      this.chart.setOption(option)
+    })
   }
 }
 </script>

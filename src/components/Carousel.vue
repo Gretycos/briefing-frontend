@@ -1,7 +1,8 @@
 <template>
   <el-carousel
+    ref="cardShow"
     height="300px"
-    :interval="20000"
+    :interval="3000"
     arrow="never"
     :autoplay="true">
     <el-carousel-item v-for="(item,index) in todayNewsInfoList" :key="index">
@@ -21,7 +22,7 @@ import { getTitleList } from '@/api/api'
 @Component({
 })
 export default class Carousel extends Vue {
-  @Prop() dateFather!: string // prop用于接收父组件穿递的参数，不需要初始化，接收到了不能直接使用
+  @Prop() dateFather!: string // prop用于接收父组件传递的参数，不需要初始化，接收到了不能直接使用
   todayNewsInfoList: [] = [] // data要初始化，data是响应式的
   // 计算属性会遇到依赖变化时进行变化
   get dateChild () {
@@ -36,6 +37,8 @@ export default class Carousel extends Vue {
     // console.log(param)
     getTitleList(param).then(res => {
       this.todayNewsInfoList = res
+      const el: any = this.$refs.cardShow
+      el.setActiveItem(0)
       // console.log(res)
     })
   }
