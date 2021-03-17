@@ -50,10 +50,18 @@ export default class Carousel extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .el-carousel{
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  .el-carousel__indicators{
+    .el-carousel__indicator{
+      .el-carousel__button{
+        height: 4px;
+      }
+    }
+  }
 }
+
 .el-carousel__item{
   background-color: antiquewhite;
 }
