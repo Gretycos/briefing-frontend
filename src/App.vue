@@ -7,16 +7,22 @@
     <el-main>
       <router-view/>
     </el-main>
+    <el-divider></el-divider>
+    <el-footer>
+      <FootBar/>
+    </el-footer>
   </el-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import TopBar from '@/components/TopBar.vue'
+import FootBar from '@/components/FootBar.vue'
 
 @Component({
   components: {
-    TopBar
+    TopBar,
+    FootBar
   }
 })
 export default class App extends Vue {

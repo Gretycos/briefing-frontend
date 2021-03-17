@@ -86,11 +86,11 @@ export default class TopBar extends Vue {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  text-shadow: 1px 0 1px #393838;
   .covid-19{
     font-weight: bolder;
     font-size: 32px;
     color: red;
+    text-shadow: 1px 0 1px #393838;
   }
   .covid-text{
     margin-left: 10px;
