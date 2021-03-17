@@ -43,8 +43,9 @@ export default class Carousel extends Vue {
   }
 
   moveToArticle () {
-    console.log(this.dateChild)
-    this.$router.push({ name: 'Article', params: { date: this.dateChild } })
+    // console.log(this.dateChild)
+    // this.$router.push({ name: 'Article', params: { date: this.dateChild } })
+    this.$router.push({ path: `/article/${this.dateChild}` })
   }
 }
 </script>
@@ -55,6 +56,9 @@ export default class Carousel extends Vue {
 }
 .el-carousel__item{
   background-color: antiquewhite;
+}
+.carousel-content:hover{
+  cursor: pointer
 }
 .carousel-content{
   height: 100%;
