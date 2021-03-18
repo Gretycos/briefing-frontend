@@ -154,10 +154,17 @@ export default class Table extends Vue {
   width: auto;
 }
 .tooltip{
-  width: 280px;
   display: flex;
   flex-direction: column;
   font-weight: bold;
+  @media screen and (min-aspect-ratio: 1/1) {
+    font-size: 14px;
+    width: 280px;
+  }
+  @media screen and (max-aspect-ratio: 1/1) {
+    font-size: 9px;
+    width: 175px;
+  }
 }
 .tooltip-row{
   display: flex;
