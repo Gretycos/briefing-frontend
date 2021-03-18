@@ -76,10 +76,16 @@ export default class Table extends Vue {
         type: 'category',
         data: dataList.map((item: {date: string; kw_date: []; nums: number}) => {
           return item.date
-        })
+        }),
+        axisLabel: {
+          showMinLabel: true,
+          showMaxLabel: true
+        }
       },
       yAxis: {
         type: 'value',
+        name: 'HOT INDEX',
+        nameLocation: 'end',
         axisPointer: {
           snap: true,
           label: {
@@ -93,11 +99,25 @@ export default class Table extends Vue {
           data: dataList.map((item: {date: string; kw_date: []; nums: number}) => {
             return item.nums
           }),
-          symbolSize: 6
+          symbolSize: (value: any, p: any) => {
+            if (p.dataIndex === dataList.length - 1) {
+              return 8
+            } else {
+              return 6
+            }
+          },
+          symbol: (value: any, p: any) => {
+            if (p.dataIndex === dataList.length - 1) {
+              return 'circle'
+            } else {
+              return 'emptyCircle'
+            }
+          }
         }
       ]
     }
     this.chart.setOption(option)
+    window.onresize = this.chart.resize // 随窗口大小变化而变化
     this.chart.on('click', (params: any) => {
       // console.log(params)
       this.$emit('emit-date', params.name)
@@ -113,7 +133,7 @@ export default class Table extends Vue {
             },
             symbolSize: (value: any, p: any) => {
               if (params.dataIndex === p.dataIndex) {
-                return 10
+                return 8
               } else {
                 return 6
               }
@@ -131,7 +151,7 @@ export default class Table extends Vue {
 .line-chart{
   position: relative;
   height: 400px;
-  width: 100%;
+  width: auto;
 }
 .tooltip{
   width: 280px;

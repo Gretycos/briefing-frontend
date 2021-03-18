@@ -74,7 +74,12 @@ export default class TopBar extends Vue {
     margin-right: 10px;
     color: red;
   }
-  font-size: 16px;
+  @media screen and (min-aspect-ratio: 1/1){
+    font-size: 16px;
+  }
+  @media screen and (max-aspect-ratio: 1/1){
+    font-size: 10px;
+  }
   font-weight: bold;
 }
 .covid:hover{
@@ -88,7 +93,12 @@ export default class TopBar extends Vue {
   align-items: center;
   .covid-19{
     font-weight: bolder;
-    font-size: 32px;
+    @media screen and (min-aspect-ratio: 1/1) {
+      font-size: 32px;
+    }
+    @media screen and (max-aspect-ratio: 1/1) {
+      font-size: 20px;
+    }
     color: red;
     text-shadow: 1px 0 1px #393838;
   }
@@ -99,7 +109,12 @@ export default class TopBar extends Vue {
     justify-content: flex-start;
     align-items: flex-start;
     font-weight: normal;
-    font-size: 18px;
+    @media screen and (min-aspect-ratio: 1/1) {
+      font-size: 18px;
+    }
+    @media screen and (max-aspect-ratio: 1/1) {
+      font-size: 12px;
+    }
   }
 }
 </style>

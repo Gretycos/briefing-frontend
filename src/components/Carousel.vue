@@ -2,9 +2,10 @@
   <el-carousel
     ref="carousel"
     height="300px"
-    :interval="3000"
+    :interval="5000"
     arrow="never"
-    :autoplay="true">
+    :autoplay="true"
+    v-loading="loading">
     <el-carousel-item v-for="(item,index) in todayNewsInfoList" :key="index">
       <div class="carousel-content" @click="moveToArticle">
         <div class="carousel-hot">—— HOT ISSUE {{ index+1 }} ——</div>
@@ -23,6 +24,7 @@ import { getTitleList, getSummaryList } from '@/api/api'
 export default class Carousel extends Vue {
   @Prop() dateFather!: string // prop用于接收父组件传递的参数，不需要初始化，接收到了不能直接使用
   todayNewsInfoList: [] = [] // data要初始化，data是响应式的
+  loading = false;
   // 计算属性会遇到依赖变化时进行变化
   get dateChild () {
     return this.dateFather
@@ -34,12 +36,16 @@ export default class Carousel extends Vue {
       time: newValue.toString()
     }
     // console.log(param)
-    getTitleList(param).then(res => {
-      this.todayNewsInfoList = res
-      const el: any = this.$refs.carousel
-      el.setActiveItem(0)
-      // console.log(res)
-    })
+    this.loading = true
+    setTimeout(() => {
+      getTitleList(param).then(res => {
+        this.todayNewsInfoList = res
+        this.loading = false
+        const el: any = this.$refs.carousel
+        el.setActiveItem(0)
+        // console.log(res)
+      })
+    }, 300)
   }
 
   moveToArticle () {
@@ -82,7 +88,12 @@ export default class Carousel extends Vue {
   align-items: flex-end;
   justify-content: center;
   color: red;
-  font-size: 24px;
+  @media screen and (min-aspect-ratio: 1/1) {
+    font-size: 24px;
+  }
+  @media screen and (max-aspect-ratio: 1/1) {
+    font-size: 15px;
+  }
   font-weight: bold;
   text-shadow: 0 0 1px #393838;
 }
@@ -91,7 +102,12 @@ export default class Carousel extends Vue {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+  @media screen and (min-aspect-ratio: 1/1) {
+    font-size: 32px;
+  }
+  @media screen and (max-aspect-ratio: 1/1) {
+    font-size: 20px;
+  }
   font-weight: bolder;
 }
 .carousel-date{
@@ -100,7 +116,12 @@ export default class Carousel extends Vue {
   align-items: flex-start;
   justify-content: center;
   color: gray;
-  font-size: 16px;
+  @media screen and (min-aspect-ratio: 1/1) {
+    font-size: 16px;
+  }
+  @media screen and (max-aspect-ratio: 1/1) {
+    font-size: 10px;
+  }
   font-weight: bold;
 }
 </style>
