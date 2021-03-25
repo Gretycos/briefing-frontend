@@ -9,7 +9,8 @@
           <div class="summary-index-num">#0{{index+1}}</div>
         </div>
         <div class="summary-title">{{item.title}}</div>
-        <div class="summary-content">{{parseContent(item.title,item.summary.replace(/[\s]/g,"\n"))}}</div>
+<!--        <div class="summary-content">{{parseContent(item.title,item.summary.replace(/[\s]/g,"\n"))}}</div>-->
+        <div class="summary-content">{{item.summary}}</div>
         <el-divider v-if="index!==summaryList.length-1"></el-divider>
       </div>
     </div>
@@ -46,14 +47,14 @@ export default class Article extends Vue {
     this.summaryList = res
   }
 
-  parseContent (title: string, content: string) {
-    const start = content.indexOf(title)
-    if (start !== -1) {
-      return content.substring(start + title.length)
-    } else {
-      return content
-    }
-  }
+  // parseContent (title: string, content: string) {
+  //   const start = content.indexOf(title)
+  //   if (start !== -1) {
+  //     return content.substring(start + title.length)
+  //   } else {
+  //     return content
+  //   }
+  // }
 }
 </script>
 
