@@ -10,7 +10,7 @@
         </div>
         <div class="summary-title">{{item.title}}</div>
 <!--        <div class="summary-content">{{parseContent(item.title,item.summary.replace(/[\s]/g,"\n"))}}</div>-->
-        <div class="summary-content">{{item.summary}}</div>
+        <div class="summary-content">{{item.summary.replace(/[\s]/g,"\n")}}</div>
         <el-divider v-if="index!==summaryList.length-1"></el-divider>
       </div>
     </div>
