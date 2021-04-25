@@ -1,44 +1,56 @@
 <template>
-  <el-row type="flex" justify="space-between" align="bottom">
-    <el-col :span="16">
-      <!-- typescript路径需要用require函数 -->
-      <el-row
-        type="flex"
-        justify="start">
-        <el-col :span="24">
-          <div class="covid" @click="backToHome">
-            <div class="covid-19">COVID-19</div>
-            <div class="covid-text">
-              <div class="covid-daily">DAILY</div>
-              <div class="covid-issues-report">ISSUES REPORT</div>
-            </div>
-          </div>
-        </el-col>
-<!--        <el-image-->
-<!--          :src="require('../assets/covid-19.png')"-->
-<!--          :fit="'contain'"-->
-<!--          style="width:400px; height: 80px;" @click="backToHome">-->
-<!--        </el-image>-->
-      </el-row>
-    </el-col>
-    <el-col :span="8">
-      <el-row
-        type="flex"
-        justify="end"
-        align="bottom">
-        <el-col :span="24">
-          <div class="date-week">
-            <div class="date">
-              {{ date }}
-            </div>
-            <div class="week">
-              {{ week }}
-            </div>
-          </div>
-        </el-col>
-      </el-row>
-    </el-col>
-  </el-row>
+  <div class="top-bar">
+    <div class="covid" @click="backToHome">
+      <div class="covid-19">COVID-19</div>
+      <div class="covid-text">
+        <div class="covid-daily">DAILY</div>
+        <div class="covid-issues-report">ISSUES REPORT</div>
+      </div>
+    </div>
+    <div class="date-week">
+      <div class="date">
+        {{ date }}
+      </div>
+      <div class="week">
+        {{ week }}
+      </div>
+    </div>
+  </div>
+<!--  <el-row type="flex" justify="space-between" align="bottom">-->
+<!--    <el-col :span="16">-->
+<!--      &lt;!&ndash; typescript路径需要用require函数 &ndash;&gt;-->
+<!--      <el-row-->
+<!--        type="flex"-->
+<!--        justify="start">-->
+<!--        <el-col :span="24">-->
+<!--          <div class="covid" @click="backToHome">-->
+<!--            <div class="covid-19">COVID-19</div>-->
+<!--            <div class="covid-text">-->
+<!--              <div class="covid-daily">DAILY</div>-->
+<!--              <div class="covid-issues-report">ISSUES REPORT</div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </el-col>-->
+<!--      </el-row>-->
+<!--    </el-col>-->
+<!--    <el-col :span="8">-->
+<!--      <el-row-->
+<!--        type="flex"-->
+<!--        justify="end"-->
+<!--        align="bottom">-->
+<!--        <el-col :span="24">-->
+<!--          <div class="date-week">-->
+<!--            <div class="date">-->
+<!--              {{ date }}-->
+<!--            </div>-->
+<!--            <div class="week">-->
+<!--              {{ week }}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </el-col>-->
+<!--      </el-row>-->
+<!--    </el-col>-->
+<!--  </el-row>-->
 </template>
 
 <script lang="ts">
@@ -61,10 +73,14 @@ export default class TopBar extends Vue {
 }
 </script>
 <style scoped lang="scss">
+.top-bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
 .date-week{
   height: 80px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: flex-end;
   align-items: flex-end;
   .date{
@@ -87,7 +103,6 @@ export default class TopBar extends Vue {
 }
 .covid{
   height: 80px;
-  width: 400px;
   display: flex;
   justify-content: flex-start;
   align-items: center;

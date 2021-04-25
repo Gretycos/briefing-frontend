@@ -31,6 +31,11 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
+//*{
+//  outline: solid #f00 1px !important;
+//  background: #000 !important;
+//  color: #fff !important;
+//}
 .container {
   font-family: sans-serif, Avenir, Helvetica, Arial;
   -webkit-font-smoothing: antialiased;

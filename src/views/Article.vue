@@ -8,9 +8,18 @@
           <div class="summary-index-issue">ISSUE</div>
           <div class="summary-index-num">#0{{index+1}}</div>
         </div>
-        <div class="summary-title">{{item.title}}</div>
+        <div class="summary-title">{{item.title}}
+          <a :href="item.url" class="summary-origin">[查看原文]</a>
+        </div>
 <!--        <div class="summary-content">{{parseContent(item.title,item.summary.replace(/[\s]/g,"\n"))}}</div>-->
-        <div class="summary-content">{{item.summary.replace(/[\s]/g,"\n")}}</div>
+        <div class="summary-content-container">
+          <div class="summary-content">
+            <div class="summary-img-container" v-if="item.images!==''">
+              <img :src="'http://39.105.43.226:8081/images'+item.images" v-image-preview/>
+            </div>
+            {{item.summary.replace(/[\s]/g,"\n")}}
+          </div>
+        </div>
         <el-divider v-if="index!==summaryList.length-1"></el-divider>
       </div>
     </div>
@@ -105,10 +114,39 @@ export default class Article extends Vue {
     font-size: 24px;
     font-weight: bold;
     margin: 20px 0 20px 0;
+    .summary-origin{
+      text-decoration: none;
+      font-size: 13px;
+      color: darkgray;
+    }
   }
-  .summary-content{
-    text-align: left;
-    font-size: 16px;
+  .summary-content-container{
+    .summary-content{
+      float: left;
+      text-align: left;
+      font-size: 16px;
+    }
+    .summary-img-container{
+      @media screen and (min-aspect-ratio: 1/1) {
+        width:30%;
+      }
+      @media screen and (max-aspect-ratio: 1/1) {
+        width:100%;
+      }
+      padding: 0 0 10px 10px;
+      float: right;
+      img{
+        width: 100%;
+        object-fit: contain;
+        cursor: pointer;
+      }
+      .summary-img-error{
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 }
 </style>
