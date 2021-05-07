@@ -79,7 +79,7 @@ export default class TopBar extends Vue {
   align-items: end;
 }
 .date-week{
-  height: 80px;
+  height: 60px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;

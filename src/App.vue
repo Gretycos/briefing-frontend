@@ -7,7 +7,7 @@
     <el-main>
       <router-view/>
     </el-main>
-    <el-divider></el-divider>
+    <el-divider class="foot-divider"></el-divider>
     <el-footer>
       <FootBar/>
     </el-footer>
@@ -42,5 +42,11 @@ export default class App extends Vue {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+.el-footer{
+  height: 30px !important;
+}
+.el-divider--horizontal{
+  margin: 10px 0 !important;
 }
 </style>

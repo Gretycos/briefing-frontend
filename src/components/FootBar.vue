@@ -4,11 +4,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 @Component
 export default class FootBar extends Vue {
-
 }
 </script>
 
@@ -16,5 +15,4 @@ export default class FootBar extends Vue {
 .foot{
   font-size: 14px;
 }
-
 </style>
