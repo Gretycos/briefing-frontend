@@ -17,7 +17,8 @@
             <div class="summary-img-container" v-if="item.images!==''">
               <img :src="'http://39.105.43.226:8081/images'+item.images" v-image-preview/>
             </div>
-            {{item.summary.replace(/[\s]/g,"\n")}}
+            <div v-html="item.summary.replace(/。[\s][\s]/g,'。<br>').replace(/[\s][\s]/g, '')"></div>
+<!--            {{item.summary.replace(/[\s]/g,"\n")}}-->
           </div>
         </div>
         <el-divider v-if="index!==summaryList.length-1"></el-divider>
