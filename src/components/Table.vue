@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { format, subDays } from 'date-fns'
-import { newsCountList } from '@/api/api'
+import { getLatestDate, newsCountList } from '@/api/api'
 import * as echarts from 'echarts/core'
 import {
   LineChart,
@@ -30,8 +30,12 @@ export default class Table extends Vue {
   chart: any = null
 
   created () {
-    const date = format(subDays(this.todayDate, 1), 'yyyy-MM-dd')
-    this.$emit('emit-date', date)
+    getLatestDate().then(res => {
+      const date = res
+      // console.log(res)
+      this.$emit('emit-date', date)
+    })
+    // const date = format(subDays(this.todayDate, 1), 'yyyy-MM-dd')
   }
 
   mounted () {
